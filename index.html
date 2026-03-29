@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.R.T MONEY CHANGER TRACKER</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="title">A.R.T MONEY CHANGER TRACKER</h1>
+                <p class="subtitle">Developed by Zayanii</p>
+            </div>
+            <button id="refreshButton">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"></path>
+                    <path d="M3 3v5h5"></path>
+                    <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"></path>
+                    <path d="M16 21h5v-5"></path>
+                </svg>
+                Refresh Rates
+            </button>
+        </div>
+        
+        <div id="currency-cards" class="grid">
+            <!-- Currency cards will be inserted here by JavaScript -->
+            <div class="card">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="loading">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="grid">
+            <div class="converter">
+                <h2 class="converter-title">Currency Converter</h2>
+                <div class="form-group">
+                    <label for="amount">Amount</label>
+                    <input type="number" id="amount" value="1" min="0" step="any">
+                </div>
+                
+                <div class="converter-row">
+                    <div class="converter-col">
+                        <div class="form-group">
+                            <label for="fromCurrency">From</label>
+                            <select id="fromCurrency"></select>
+                        </div>
+                    </div>
+                    <div style="align-self: center; margin-bottom: 15px;">
+                        <button id="swapButton" style="padding: 8px; border-radius: 50%;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="m3 9 4-4m0 0 4 4m-4-4v14"></path>
+                                <path d="m21 15-4 4m0 0-4-4m4 4V5"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <div class="converter-col">
+                        <div class="form-group">
+                            <label for="toCurrency">To</label>
+                            <select id="toCurrency"></select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="converter-result">
+                    <p id="conversionResult" class="result-text">Loading...</p>
+                    <p id="conversionRate" class="rate-text"></p>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="chart-header">
+                    <h2 class="chart-title">Historical Exchange Rates</h2>
+                    <div class="chart-buttons">
+                        <button class="chart-btn active" data-currency="USD">USD/PHP</button>
+                        <button class="chart-btn" data-currency="JPY">JPY/PHP</button>
+                    </div>
+                </div>
+
+                <!-- Timeframe selector near the graph -->
+                <div class="timeframe-selector">
+                   <button class="timeframe-btn" data-days="1">1 DAY</button>
+                    <button class="timeframe-btn active" data-days="5">5 DAYS</button>
+                    <button class="timeframe-btn" data-days="30">1 MONTH</button>
+                    <button class="timeframe-btn" data-days="365">1 YEAR</button>
+                </div>
+
+                <div id="chart" class="chart-container"></div>
+            </div>
+        </div>
+        
+        <!-- Rate Update History Table -->
+        <div class="card rate-history">
+            <h2 class="history-title">Rate Update History</h2>
+            <div class="table-container">
+                <table id="rate-history-table" class="history-table">
+                    <thead>
+                        <tr>
+                            <th>Timestamp</th>
+                            <th>Currency Pair</th>
+                            <th>Previous Rate</th>
+                            <th>New Rate</th>
+                            <th>Change</th>
+                        </tr>
+                    </thead>
+                    <tbody id="history-table-body">
+                        <tr>
+                            <td colspan="5" class="empty-message">No rate changes recorded yet. Updates will appear here when rates change.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Last auto-refresh: <span id="lastUpdated">-</span></p>
+            <p>Data refreshes automatically every minute</p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
